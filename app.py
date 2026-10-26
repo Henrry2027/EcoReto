@@ -5,7 +5,11 @@ import os
 app = Flask(__name__)
 
 # Configuración de la base de datos (SQLite local)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///ecoreto.db')
+database_url = os.getenv('DATABASE_URL', 'sqlite:///ecoreto.db')
+if database_url and database_url.startswith("postgres://"):
+    database_url = database_url.replace("postgres://", "postgresql://", 1)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -70,3 +74,6 @@ def eliminar_accion(id):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
