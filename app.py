@@ -23,9 +23,12 @@ class Accion(db.Model):
     impacto = db.Column(db.String(100), nullable=False)
 
 with app.app_context():
-    db.create_all()
-
-# 1. Ruta de Login
+    try:
+        db.create_all()
+    except Exception as e:
+        print(f"Error al conectar/crear tablas: {e}")
+        
+# 1. Ruta de Login (Raíz)
 @app.route('/')
 def login():
     return render_template('login.html')
