@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva Acción - Misión Eco-Reto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Misión Eco-Reto</h2>
+        <a href="{{ url_for('lista_acciones') }}">🌱 Mis acciones</a>
+        <a href="{{ url_for('nueva_accion') }}">➕ Nueva acción</a>
+        <a href="{{ url_for('login') }}">🚪 Cerrar sesión</a>
+    </div>
+
+    <div class="main-content">
+        <h1>Nueva acción ecológica</h1>
+        <form action="{{ url_for('nueva_accion') }}" method="POST" style="max-width: 500px; background: white; padding: 20px; border-radius: 8px;">
+            <div class="form-group">
+                <label>Tipo de acción</label>
+                <select name="tipo" required>
+                    <option value="Reciclaje">Reciclaje</option>
+                    <option value="Ahorro de agua">Ahorro de agua</option>
+                    <option value="Transporte">Transporte</option>
+                    <option value="Energía">Energía</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Descripción</label>
+                <textarea name="descripcion" rows="3" required placeholder="Escribe qué hiciste..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>Fecha</label>
+                <input type="date" name="fecha" required>
+            </div>
+            <div class="form-group">
+                <label>Impacto (kg, litros, kWh, etc.)</label>
+                <input type="text" name="impacto" placeholder="Ej. 5 kg, 50 litros" required>
+            </div>
+            <button type="submit" class="btn btn-primary">+ Guardar acción</button>
+            <a href="{{ url_for('lista_acciones') }}" class="btn" style="background-color: #64748b;">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Acciones - Misión Eco-Reto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Misión Eco-Reto</h2>
+        <a href="{{ url_for('lista_acciones') }}">🌱 Mis acciones</a>
+        <a href="{{ url_for('nueva_accion') }}">➕ Nueva acción</a>
+        <a href="{{ url_for('login') }}">🚪 Cerrar sesión</a>
+    </div>
+
+    <div class="main-content">
+        <h1>¡Bienvenido a Misión Eco-Reto!</h1>
+        <p>Registra, consulta y comparte las acciones que ayudan al planeta.</p>
+
+        <div class="card-stats">
+            <div class="stat-box">
+                <h3>{{ acciones|length }}</h3>
+                <p>Acciones registradas</p>
+            </div>
+        </div>
+
+        <h2>Mis acciones registradas</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha</th>
+                    <th>Tipo</th>
+                    <th>Descripción</th>
+                    <th>Impacto</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in acciones %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.fecha }}</td>
+                    <td>{{ item.tipo }}</td>
+                    <td>{{ item.descripcion }}</td>
+                    <td>{{ item.impacto }}</td>
+                    <td>
+                        <a href="{{ url_for('editar_accion', id=item.id) }}" class="btn btn-warning">✏️ Editar</a>
+                        <a href="{{ url_for('eliminar_accion', id=item.id) }}" class="btn btn-danger" onclick="return confirm('¿Seguro de eliminar esta acción?')">🗑️ Eliminar</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="6" style="text-align: center;">No hay acciones registradas aún.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

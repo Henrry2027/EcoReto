@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesión - Misión Eco-Reto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <div style="background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 320px; text-align: center;">
+        <h1 style="color: #2d6a4f;">Misión Eco-Reto</h1>
+        <p>Ingresa para registrar tus acciones ecológicas.</p>
+        <form action="{{ url_for('lista_acciones') }}" method="GET">
+            <div class="form-group" style="text-align: left;">
+                <label>Usuario</label>
+                <input type="text" placeholder="Usuario" required>
+            </div>
+            <div class="form-group" style="text-align: left;">
+                <label>Contraseña</label>
+                <input type="password" placeholder="Contraseña" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Entrar</button>
+        </form>
+    </div>
+</body>
+</html>
